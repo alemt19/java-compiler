@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <title>TuTraductorPython</title>
+    <link rel="stylesheet" href="public/css/styles.css">
+</head>
+
+<body>
+    <div class="caja_grande">
+        <div class="caja_titulo">
+            <h1 class="Titulo">TuTraductorPython: Para Java</h1>
+            <figure>
+                <img src="public/image/computador.png" alt="computador">
+            </figure>
+        </div>
+        <p>¿Quieres cambiar por Mano Escrito Codigo? <a href="mano_escrito.html">This way sir!</a></p>
+
+        <div class="caja">
+            <h3>Sube un archivo que desea traducir:</h3>
+            <input type="file">
+            <button>¡TRADUCE!</button>
+        </div>
+
+        <div class="caja_resultado">
+            <h5>Resultado de traducir: </h5>
+            <textarea name="" id=""></textarea>
+        </div>
+
+        <h2 class="Autor">Autor:JJA</h2>
+    </div>
+</body>
+
+<script>
+    var mostrarDivInicial = true; // Variable para rastrear cuál div está visible (Inicialmente divInicial visible)
+    var boton = document.getElementById('boton'); // Obtener el botón
+
+    // Asegurarse de que divOculto esté oculto al inicio
+    document.getElementById('eu').style.display = 'none';
+
+    function alternarDiv() {
+        var divInicial = document.getElementById('divInicial');
+        var divOculto = document.getElementById('divOculto');
+
+        if (mostrarDivInicial) {
+            divInicial.style.display = 'none'; // Oculta el div inicial
+            divOculto.style.display = 'block'; // Muestra el div oculto
+            boton.textContent = 'Documento'; // Cambia el texto del botón
+            mostrarDivInicial = false; // Actualiza el estado
+        } else {
+            divInicial.style.display = 'block'; // Muestra el div inicial
+            divOculto.style.display = 'none'; // Oculta el div oculto
+            boton.textContent = 'Mano Escrito'; // Cambia el texto del botón
+            mostrarDivInicial = true; // Actualiza el estado
+        }
+    }
+</script>
+
+</html>

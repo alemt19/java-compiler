@@ -1,0 +1,125 @@
+body{
+    background-image: url('../image/Fondo.png');
+    background-size: cover;
+    background-color: rgba(255, 255, 255, 0.8);
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+body::before{
+    content: ""; /* Necesario para crear el pseudo-elemento */
+    position: absolute; /* Posiciona el pseudo-elemento */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.5); /* Blanco semitransparente */
+    z-index: -1; /* Asegura que esté por encima de la imagen */
+}
+
+textarea{
+    width: 80%;
+}
+
+.caja_titulo{
+    display: flex;
+    align-items: center;
+    width: 95%;
+    background: transparent;
+    border: 2px solid rgba(145, 145, 145, 0.2);
+    backdrop-filter: blur(30px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+}
+
+.caja_titulo h1{
+    display: inline-block;
+}
+figure{
+    display: inline-block;
+    text-align: center;
+    width: 72px;
+    height: 72px;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 50px ;
+}
+
+img{
+    width: 64px;
+    height: 60px;
+    margin-top:5px;
+}
+
+
+.caja_grande{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.btn_modo{
+    width: 120px;
+    height: 40px;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+button{
+    width: 150px;
+    height: 40px;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+}
+
+button:hover{
+    width: 150px;
+    height: 40px;
+    color: azure;
+    background-color: rgb(0, 166, 255);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button:active{
+    width: 150px;
+    height: 40px;
+    background-color: rgb(71, 144, 183);
+    border: none;
+    border-radius: 10px;
+}
+
+.caja{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 420px;
+    background-color: transparent;
+    border: 2px solid rgba(145, 145, 145, 0.2);
+    backdrop-filter: blur(30px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    border-radius: 10px;
+    gap:10px;
+    padding: 10px 0px;
+}
+
+
+.caja_resultado{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 420px;
+    background-color: transparent;
+    border: 2px solid rgba(145, 145, 145, 0.2);
+    backdrop-filter: blur(30px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    border-radius: 10px;
+    gap:10px;
+    padding: 10px 0px 20px;
+    margin-top: 15px;
+}

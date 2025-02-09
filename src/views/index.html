@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compilador Web</title>
+    <script src="qrc:///qtwebchannel/qwebchannel.js"></script>
     <style>
         body {
             background-color: #121212;
@@ -56,6 +57,7 @@
         <div class="buttons">
             <button onclick="runCode()">Ejecutar</button>
             <button onclick="clearCode()">Limpiar</button>
+            <button onclick="enviarAPython()">Enviar a Python</button>
         </div>
         <div class="output">
             <!-- Área de salida -->
@@ -63,14 +65,31 @@
     </div>
 
     <script>
-        function runCode() {
-            const editor = document.querySelector('.editor');
-            const output = document.querySelector('.output');
-            try {
-                output.innerHTML = eval(editor.innerText);
-            } catch (e) {
-                output.innerHTML = e;
-            }
+        // Inicialización del canal web
+        window.onload = function() {
+            new QWebChannel(qt.webChannelTransport, function(channel) {
+                window.pyObject = channel.objects.pyObject;
+            });
+        };
+
+        // Función para enviar datos a Python
+        function enviarAPython() {
+            const dato = "JS dice: ¡Hola Python! " + new Date().toLocaleTimeString();
+            
+            pyObject.metodoPython(dato, (respuesta) => {
+                agregarRespuesta(`Respuesta directa: ${respuesta}`);
+            });
+        }
+
+        // Función para recibir datos desde Python
+        function recibirDesdePython(mensaje) {
+            agregarRespuesta(`Mensaje push: ${mensaje}`);
+        }
+
+        // Mostrar respuestas en pantalla
+        function agregarRespuesta(texto) {
+            const div = document.querySelector('.output');
+            div.innerHTML = `<p>${new Date().toLocaleTimeString()}: ${texto}</p>` + div.innerHTML;
         }
 
         function clearCode() {

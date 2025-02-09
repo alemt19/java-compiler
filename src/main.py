@@ -1,10 +1,10 @@
-# main.py
 import sys
 from pathlib import Path
 from PyQt6.QtCore import QUrl, QObject, pyqtSlot, QTimer
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebChannel import QWebChannel
+from lexer import analizar
 
 class Bridge(QObject):
     def __init__(self, webview):
@@ -12,11 +12,10 @@ class Bridge(QObject):
         self.webview = webview
 
     @pyqtSlot(str, result=str)
-    def metodoPython(self, data):
+    def analisisLexicoJS(self, data):
         print(f"Dato recibido desde JS: {data}")
-        # Enviamos respuesta a JS después de 1 segundo
-        QTimer.singleShot(1000, lambda: self.enviarAJS("Python dice: ¡Hola de vuelta!"))
-        return "Python recibió: " + data
+        resultado = analizar(data)
+        return resultado
 
     def enviarAJS(self, mensaje):
         self.webview.page().runJavaScript(f"recibirDesdePython('{mensaje}')")

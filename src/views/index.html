@@ -52,7 +52,6 @@
 <body>
     <div class="container">
         <div class="editor" contenteditable="true">
-            <!-- Área para escribir código -->
         </div>
         <div class="buttons">
             <button onclick="runCode()">Ejecutar</button>
@@ -60,33 +59,28 @@
             <button onclick="enviarAPython()">Enviar a Python</button>
         </div>
         <div class="output">
-            <!-- Área de salida -->
         </div>
     </div>
 
     <script>
-        // Inicialización del canal web
         window.onload = function() {
             new QWebChannel(qt.webChannelTransport, function(channel) {
                 window.pyObject = channel.objects.pyObject;
             });
         };
 
-        // Función para enviar datos a Python
         function enviarAPython() {
             const dato = "JS dice: ¡Hola Python! " + new Date().toLocaleTimeString();
             
-            pyObject.metodoPython(dato, (respuesta) => {
+            pyObject.analisisLexicoJS(dato, (respuesta) => {
                 agregarRespuesta(`Respuesta directa: ${respuesta}`);
             });
         }
 
-        // Función para recibir datos desde Python
         function recibirDesdePython(mensaje) {
             agregarRespuesta(`Mensaje push: ${mensaje}`);
         }
 
-        // Mostrar respuestas en pantalla
         function agregarRespuesta(texto) {
             const div = document.querySelector('.output');
             div.innerHTML = `<p>${new Date().toLocaleTimeString()}: ${texto}</p>` + div.innerHTML;

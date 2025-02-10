@@ -1,4 +1,3 @@
-
 window.onload = function() {
     new QWebChannel(qt.webChannelTransport, function(channel) {
         window.pyObject = channel.objects.pyObject;
@@ -6,26 +5,25 @@ window.onload = function() {
 };
 
 function analisisLexico(input) {
-    let codigo = "";
     if (input === "textarea") {
-        codigo = document.querySelector('.input').innerHTML;
+        codigo = document.querySelector('.input').value;
+        pyObject.analisisLexicoJS(codigo, (respuesta) => {
+            agregarRespuesta(`Análisis léxico:\n${respuesta}`);
+        });
     }
     else if (input === "archivo") {
-        archivos = document.querySelector('.input').files;
-        if (archivos.length > 0) {
+        archivo = document.querySelector('.input').files[0];
+        if (archivo) {
             const lector = new FileReader();
     
-            lector.onload = () => {
-                document.querySelector('.output').innerText = (archivos[0]);
-                const contenido = archivos[0].result;
-                codigo = contenido; 
+            lector.onload = function(e) {
+                pyObject.analisisLexicoJS(e.target.result, (respuesta) => {
+                    agregarRespuesta(`Análisis léxico:\n${respuesta}`);
+                });
             };
-    
-            lector.onerror = function(e) {
-                document.querySelector('.output').innerText = ("Error al leer el archivo:", e);
-            };
-    
-            lector.readAsText(archivos[0]); // Leer el archivo como texto
+            
+            lector.readAsText(archivo, 'UTF-8'); // Especifica codificación
+
         }
         else {
             document.querySelector('.output').innerText = "No se ha seleccionado un archivo";
@@ -33,9 +31,6 @@ function analisisLexico(input) {
         }
     
     }
-    pyObject.analisisLexicoJS(codigo, (respuesta) => {
-        agregarRespuesta(`Análisis léxico:\n${respuesta}`);
-    });
 }
 
 function recibirDesdePython(mensaje) {

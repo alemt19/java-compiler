@@ -42,21 +42,8 @@ pip install PyQt6 PyQt6-WebEngine ply
 ## Roadmap
 
 *   [ ] Implementación del análisis sintáctico.
+*   [ ] Implementación del análisis semántico.
 *   [ ] Generación de código Python completo.
 *   [ ] Mejora de la interfaz de usuario.
-*   [ ] Soporte para características adicionales de Java.
-*   [ ] Pruebas exhaustivas y corrección de errores.
-
-## Contribución
-
-¡Las contribuciones son bienvenidas! Si deseas contribuir a este proyecto, sigue estos pasos:
-
-1.  Haz un fork del repositorio.
-2.  Crea una rama con tu función (`git checkout -b feature/nueva-funcion`).
-3.  Realiza tus cambios y haz commit (`git commit -m 'Añade nueva función'`).
-4.  Sube a la rama (`git push origin feature/nueva-funcion`).
-5.  Abre un pull request.
-
-## Licencia
 
 Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.

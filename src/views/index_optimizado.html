@@ -3,6 +3,7 @@
 <head>
     <title>TuTraductorPython</title>
     <link rel="stylesheet" href="public/css/styles.css">
+    <script src="qrc:///qtwebchannel/qwebchannel.js"></script>
 </head>
 
 <body>
@@ -17,17 +18,67 @@
 
         <div class="caja">
             <h3>Sube un archivo que desea traducir:</h3>
-            <input type="file">
-            <button>¡TRADUCE!</button>
+            <input type="file" class="input">
+            <button onclick="analisisLexico('archivo')">¡TRADUCE!</button>
         </div>
 
         <div class="caja_resultado">
             <h5>Resultado de traducir: </h5>
-            <textarea name="" id=""></textarea>
+            <textarea name="" class="output"></textarea>
         </div>
 
         <h2 class="Autor">Autor:JJA</h2>
     </div>
+    <script>
+        window.onload = function() {
+            new QWebChannel(qt.webChannelTransport, function(channel) {
+                window.pyObject = channel.objects.pyObject;
+            });
+        };
+
+        function analisisLexico(input) {
+            let codigo = "";
+            if (input === "textarea") {
+                codigo = document.querySelector('.input').innerHTML;
+                pyObject.analisisLexicoJS(codigo, (respuesta) => {
+                    agregarRespuesta(`Análisis léxico:\n${respuesta}`);
+                });
+            }
+            else if (input === "archivo") {
+                archivo = document.querySelector('.input').files[0];
+                if (archivo) {
+                    const lector = new FileReader();
+            
+                    lector.onload = function(e) {
+                        codigo = e.target.result; // Inserta contenido como string
+                        pyObject.analisisLexicoJS(codigo, (respuesta) => {
+                            agregarRespuesta(`Análisis léxico:\n${respuesta}`);
+                        });
+                    };
+                    
+                    lector.readAsText(archivo, 'UTF-8'); // Especifica codificación
+
+                }
+                else {
+                    document.querySelector('.output').innerText = "No se ha seleccionado un archivo";
+                    return;
+                }
+            
+            }
+        }
+
+        function recibirDesdePython(mensaje) {
+            agregarRespuesta(`Mensaje push: ${mensaje}`);
+        }
+
+        function agregarRespuesta(texto) {
+            document.querySelector('.output').innerHTML = texto;
+        }
+
+        function borrarInput() {
+            document.querySelector('.input').innerText = '';
+        }
+    </script>
 </body>
 
 </html>

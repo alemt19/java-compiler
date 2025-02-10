@@ -13,12 +13,10 @@ class Bridge(QObject):
 
     @pyqtSlot(str, result=str)
     def analisisLexicoJS(self, data):
-        print(f"Dato recibido desde JS: {data}")
-        resultado = analizar(data)
-        return resultado
+        return analizar(data)
 
-    def enviarAJS(self, mensaje):
-        self.webview.page().runJavaScript(f"recibirDesdePython('{mensaje}')")
+    def enviarAJS(self, data):
+        self.webview.page().runJavaScript(f"recibirDesdePython('{data}')")
 
 app = QApplication(sys.argv)
 view = QWebEngineView()
@@ -28,7 +26,7 @@ bridge = Bridge(view)
 channel.registerObject('pyObject', bridge)
 view.page().setWebChannel(channel)
 
-html_path = Path(__file__).parent / 'views' / 'index.html'
+html_path = Path(__file__).parent / 'views' / 'index_optimizado.html'
 view.load(QUrl.fromLocalFile(str(html_path.absolute())))
 
 view.show()

@@ -3,6 +3,8 @@
 <head>
     <title>TuTraductorPython</title>
     <link rel="stylesheet" href="public/css/styles.css">
+    <script type="module" src="./public/js/connection.js"></script>
+    <script src="qrc:///qtwebchannel/qwebchannel.js"></script>
 </head>
 
 <body>
@@ -17,17 +19,68 @@
 
         <div class="caja">
             <h3>Escribe tus códigos que desea traducir:</h3>
-            <textarea name="" id="">System.out.printl("Hello World")</textarea>
-            <button>¡TRADUCE!</button>
+            <textarea name="" class="input">System.out.printl("Hello World")</textarea>
+            <button onclick="analisisLexico('textarea')">¡TRADUCE!</button>
         </div>
 
         <div class="caja_resultado">
             <h5>Resultado de traducir: </h5>
-            <textarea name="" id=""></textarea>
+            <textarea name="" class="output"></textarea>
         </div>
 
         <h2 class="Autor">Autor:JJA</h2>
     </div>
+    
+    <script>
+        window.onload = function() {
+            new QWebChannel(qt.webChannelTransport, function(channel) {
+                window.pyObject = channel.objects.pyObject;
+            });
+        };
+
+        function analisisLexico(input) {
+            let codigo = "";
+            if (input === "textarea") {
+                codigo = document.querySelector('.input').value;
+            }
+            else if (input === "file") {
+                archivos = document.querySelector('.input').files;
+                if (archivos.length === 0) {
+                document.querySelector('.output').innerText = "No se ha seleccionado un archivo";
+                }
+                const lector = new FileReader();
+
+                lector.onload = function(e) {
+                const contenido = e.target.result;
+                codigo = contenido; 
+                };
+
+                lector.onerror = function(e) {
+                console.error("Error al leer el archivo:", e);
+                };
+
+                lector.readAsText(archivos); // Leer el archivo como texto
+            
+            }
+            pyObject.analisisLexicoJS(codigo, (respuesta) => {
+                agregarRespuesta(`Análisis léxico:\n${respuesta}`);
+            });
+        }
+
+        function recibirDesdePython(mensaje) {
+            agregarRespuesta(`Mensaje push: ${mensaje}`);
+        }
+
+        function agregarRespuesta(texto) {
+            const div = document.querySelector('.output');
+            div.innerHTML = `${new Date().toLocaleTimeString()}: ${texto}` + div.innerHTML;
+        }
+
+        function clearCode() {
+            document.querySelector('.editor').innerText = '';
+            document.querySelector('.output').innerText = '';
+        }
+    </script>
 </body>
 
 </html>

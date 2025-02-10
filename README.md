@@ -1,7 +1,7 @@
 # J2Py
 
 
-Py2J es una herramienta desarrollada en Python para la conversión de código Java a Python. Permite a los usuarios ingresar código Java directamente en la interfaz o cargar archivos `.java` para su conversión. Actualmente, el proyecto se encuentra en sus primeras etapas y **solo incluye la funcionalidad de análisis léxico**. En el futuro, se planea implementar el análisis sintáctico y la generación de código Python completo.
+J2Py es una herramienta desarrollada en Python para la conversión de código Java a Python. Permite a los usuarios ingresar código Java directamente en la interfaz o cargar archivos `.java` para su conversión. Actualmente, el proyecto se encuentra en sus primeras etapas y **solo incluye la funcionalidad de análisis léxico**. En el futuro, se planea implementar el análisis sintáctico y la generación de código Python completo.
 
 ## Tabla de Contenidos
 

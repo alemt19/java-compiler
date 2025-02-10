@@ -11,7 +11,6 @@ Py2J es una herramienta desarrollada en Python para la conversión de código Ja
 *   [Roadmap](#roadmap)
 *   [Contribución](#contribución)
 *   [Licencia](#licencia)
-*   [Agradecimientos](#agradecimientos)
 
 ## Características
 

@@ -1,25 +1,14 @@
 import ply.lex as lex
+from tkn_rules import *
+from keywords import keywords
+from lits_ops import tokens
 
-reserved = {
-    'class': 'CLASS',
-    'public': 'PUBLIC',
-    'static': 'STATIC',
-    'void': 'VOID',
-    'int': 'INT_TYPE',
-    'String': 'STRING_TYPE'
-}
-
-tokens = list(reserved.values()) + [
-    # Literales y operadores
-    'IDENTIFIER', 'NUMBER', 'STRING_LITERAL', 
-    'PLUS', 'MINUS', 'MULT', 'DIV', 
-    'EQUALS', 'LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'LBRACKET', 'RBRACKET', 'SEMICOLON', 'DOT',   
-    'EQUALSBOOL'
-]
+reserved = keywords
+tokens = list(reserved.values()) + tokens
 
 def t_IDENTIFIER(t):
     r'[a-zA-Z_$][a-zA-Z0-9_$]*'
-    t.type = reserved.get(t.value, 'IDENTIFIER')  # Check si es palabra reservada
+    t.type = reserved.get(t.value, 'IDENTIFIER')  # Revisar si es palabra reservada
     return t
 
 def t_NUMBER(t):
@@ -31,21 +20,6 @@ def t_STRING_LITERAL(t):
     r'\"([^\\\n]|(\\.))*?\"'
     t.value = t.value[1:-1]  # Remover comillas
     return t
-
-t_PLUS = r'\+'
-t_MINUS = r'-'
-t_MULT = r'\*'
-t_DIV = r'/'
-t_EQUALSBOOL = r'=='
-t_EQUALS = r'='
-t_LPAREN = r'\('
-t_RPAREN = r'\)'
-t_LBRACE = r'\{'
-t_RBRACE = r'\}'
-t_LBRACKET = r'\['
-t_RBRACKET = r'\]'
-t_SEMICOLON = r';'
-t_DOT = r'\.'
 
 t_ignore = ' \t'  # Ignorar espacios y tabs
 

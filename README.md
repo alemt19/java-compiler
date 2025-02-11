@@ -9,7 +9,6 @@ J2Py es una herramienta desarrollada en Python para la conversión de código Ja
 *   [Instalación](#instalación)
 *   [Uso](#uso)
 *   [Roadmap](#roadmap)
-*   [Contribución](#contribución)
 *   [Licencia](#licencia)
 
 ## Características

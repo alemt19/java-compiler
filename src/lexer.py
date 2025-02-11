@@ -1,7 +1,7 @@
 import ply.lex as lex
 from tkn_rules import *
 from keywords import keywords
-from lits_ops import tokens
+from tokens import tokens
 
 reserved = keywords
 tokens = list(reserved.values()) + tokens

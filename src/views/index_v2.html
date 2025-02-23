@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <title>Jafapy</title>
+    <link rel="stylesheet" href="public/css/styles2.css">
+    <link rel="icon" type="image/png" href="public/image/computador.png">
+</head>
+
+<body>
+    <div class="caja_main">
+
+        <div class="caja_titulo">
+            <h1 class="Titulo">Jafapy</h1>
+            <figure>
+                <img src="public/image/computador.png" alt="computador">
+            </figure>
+        </div>
+
+        <div class="caja_modos">
+            <p>¿Quieres cambiar por Mano Escrito Codigo? <a href="mano_escritov2.html">This way sir!</a> <span
+                    class="emoji">&#129488;</span></p>
+        </div>
+
+        <div class="caja_grande">
+            <div class="caja12">
+                <div class="caja_Parte_arriba">
+                    <span><strong>Sube un archivo que desea traducir:</strong></span>
+                    <input type="file" class="input" accept=".java">
+                    <div class="caja_seleccionar_modos">
+                        <span><strong>¡Y selecciona Modo para Traducir!: </strong></span>
+                        <select>
+                            <option value="">Elige Modo</option>
+                            <option value="">Léxico</option>
+                            <option value="">Sintaxis</option>
+                            <option value="">Semántico</option>
+                            <option value="">Código Intermedio</option>
+                            <option value="">Optimizacion de Código</option>
+                            <option value="">Generar Código</option>
+                        </select>
+                    </div>
+                    <button onclick="analisisLexico('archivo')">¡TRADUCE!</button>
+                </div>
+                <div>
+                    <h2>Código Proporcionado</h2>
+                    <textarea name="" id="" class="consola_resultado_traducir" readonly="readonly"></textarea>
+                </div>
+            </div>
+            <div class="caja12">
+                <div class="caja_Parte_arriba_modificado">
+                    <h2>Consola: </h2>
+                    <textarea name="" id="" class="consola_reportar" readonly="readonly"></textarea>
+                </div>
+
+                <div>
+                    <h2>Análisis de Resultado</h2>
+                    <textarea name="" id="" class="consola_resultado_traducir" readonly="readonly"></textarea>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <h2 class="Autor">Autor: JJA</h2>
+        </footer>
+    </div>
+</body>
+
+</html>

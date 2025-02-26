@@ -9,6 +9,10 @@ function analisisLexico(input) {
         codigo = document.querySelector('#input').value;
         pyObject.analisisLexicoJS(codigo, (respuesta) => {
             agregarRespuesta(`Análisis léxico:\n${respuesta}`);
+
+        });
+        pyObject.analisisLexicoErroresJS((errores) => {
+            agregarErrores(`${errores}`);
         });
     }
     else if (input === "archivo") {
@@ -17,8 +21,12 @@ function analisisLexico(input) {
             const lector = new FileReader();
     
             lector.onload = function(e) {
+                agregarCodigo(e.target.result);
                 pyObject.analisisLexicoJS(e.target.result, (respuesta) => {
-                    agregarRespuesta(`Análisis léxico:\n${respuesta}`);
+                    agregarRespuesta(`${respuesta}`);
+                });
+                pyObject.analisisLexicoErroresJS((errores) => {
+                    agregarErrores(`${errores}`);
                 });
             };
             
@@ -33,12 +41,16 @@ function analisisLexico(input) {
     }
 }
 
-function recibirDesdePython(mensaje) {
-    agregarRespuesta(`Mensaje push: ${mensaje}`);
-}
-
 function agregarRespuesta(texto) {
     document.querySelector('#output').innerHTML = texto;
+}
+
+function agregarErrores(texto) {
+    document.querySelector('#console').innerHTML = texto;
+}
+
+function agregarCodigo(texto) {
+    document.querySelector('#code').innerHTML = texto;
 }
 
 function borrarInput() {

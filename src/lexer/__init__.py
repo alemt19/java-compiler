@@ -1,1 +1,1 @@
-from .lexer import analizar
+from .lexer import analizar, errores

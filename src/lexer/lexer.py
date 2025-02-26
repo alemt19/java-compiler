@@ -31,8 +31,10 @@ def t_newline(t):
     r'\r?\n'  # Coincide con \n o \r\n
     t.lexer.lineno += 1
 
+errors = []
+
 def t_error(t):
-    print(f"Carácter ilegal '{t.value[0]}' en la línea {t.lineno}, posición {t.lexpos}")
+    errors.append(f"Carácter ilegal '{t.value[0]}' en la línea {t.lineno}, posición {t.lexpos}")
     t.lexer.skip(1)  # Salta el carácter ilegal
 
 lexer = lex.lex()
@@ -44,3 +46,6 @@ def analizar(codigoStr):
     for tok in lexer:
         resultado += f"Token: {tok.type}, Valor: {tok.value}, Linea: {tok.lineno}\n"
     return resultado
+
+def errores():
+    return "\n".join(errors)

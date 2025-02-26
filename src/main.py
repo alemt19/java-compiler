@@ -7,7 +7,7 @@ from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebChannel import QWebChannel
 
 sys.path.insert(0, path.join(".", "lexer"))
-from lexer import analizar
+from lexer import analizar, errores
 
 class Bridge(QObject):
     def __init__(self, webview):
@@ -17,6 +17,10 @@ class Bridge(QObject):
     @pyqtSlot(str, result=str)
     def analisisLexicoJS(self, data):
         return analizar(data)
+    
+    @pyqtSlot(result=str)
+    def analisisLexicoErroresJS(self):
+        return errores()
 
     def enviarAJS(self, data):
         self.webview.page().runJavaScript(f"recibirDesdePython('{data}')")

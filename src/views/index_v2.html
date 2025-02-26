@@ -4,6 +4,8 @@
     <title>Jafapy</title>
     <link rel="stylesheet" href="public/css/styles2.css">
     <link rel="icon" type="image/png" href="public/image/computador.png">
+    <script src="public/js/connection.js"></script>
+    <script src="qrc:///qtwebchannel/qwebchannel.js"></script>
 </head>
 
 <body>
@@ -25,7 +27,7 @@
             <div class="caja12">
                 <div class="caja_Parte_arriba">
                     <span><strong>Sube un archivo que desea traducir:</strong></span>
-                    <input type="file" class="input" accept=".java">
+                    <input type="file" id="input" accept=".java">
                     <div class="caja_seleccionar_modos">
                         <span><strong>¡Y selecciona Modo para Traducir!: </strong></span>
                         <select>
@@ -48,12 +50,12 @@
             <div class="caja12">
                 <div class="caja_Parte_arriba_modificado">
                     <h2>Consola: </h2>
-                    <textarea name="" id="" class="consola_reportar" readonly="readonly"></textarea>
+                    <textarea name="" id="console" class="consola_reportar" readonly="readonly"></textarea>
                 </div>
 
                 <div>
                     <h2>Análisis de Resultado</h2>
-                    <textarea name="" id="" class="consola_resultado_traducir" readonly="readonly"></textarea>
+                    <textarea name="" id="output" class="consola_resultado_traducir" readonly="readonly"></textarea>
                 </div>
             </div>
         </div>

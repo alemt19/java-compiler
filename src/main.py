@@ -29,7 +29,7 @@ bridge = Bridge(view)
 channel.registerObject('pyObject', bridge)
 view.page().setWebChannel(channel)
 
-html_path = Path(__file__).parent / 'views' / 'index_optimizado.html'
+html_path = Path(__file__).parent / 'views' / 'index_v2.html'
 view.load(QUrl.fromLocalFile(str(html_path.absolute())))
 
 view.show()

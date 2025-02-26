@@ -1,9 +1,12 @@
 import sys
+from os import path
 from pathlib import Path
-from PyQt6.QtCore import QUrl, QObject, pyqtSlot, QTimer
+from PyQt6.QtCore import QUrl, QObject, pyqtSlot
 from PyQt6.QtWidgets import QApplication
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebChannel import QWebChannel
+
+sys.path.insert(0, path.join(".", "lexer"))
 from lexer import analizar
 
 class Bridge(QObject):

@@ -48,4 +48,6 @@ def analizar(codigoStr):
     return resultado
 
 def errores():
-    return "\n".join(errors)
+    erroresStr = "\n".join(errors)
+    errors = []
+    return erroresStr 

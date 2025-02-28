@@ -49,5 +49,7 @@ def analizar(codigoStr):
 
 def errores():
     erroresStr = "\n".join(errors)
-    errors = []
+    while(len(errors)!= 0):
+        errors.pop(-1)
+    lexer.lineno = 1
     return erroresStr 

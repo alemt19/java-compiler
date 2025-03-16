@@ -52,4 +52,7 @@ def errores():
     while(len(errors)!= 0):
         errors.pop(-1)
     lexer.lineno = 1
-    return erroresStr 
+    return erroresStr
+
+def crear_lexer():
+    return lex.lex()

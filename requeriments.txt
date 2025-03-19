@@ -1,4 +1,4 @@
-ply==3.11
+ply @ git+https://github.com/dabeaz/ply.git@5c4dc94d4c6d059ec127ee1493c735963a5d2645
 PyQt6==6.8.1
 PyQt6-Qt6==6.8.2
 PyQt6-WebEngine==6.8.0

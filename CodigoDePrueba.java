@@ -1,11 +1,10 @@
 public class CodigoDePrueba {
     public static void main(String[] args) {
-        String nombre = "Alfredo";
-        int suma = a + b;
-        if (suma) {
-            a = 5;
+        int edad = 18;
+        if (edad >= 18) {
+            String mensaje = "Mayor de edad";
         } else {
-            b = 2;
+            String mensaje = "Menor de edad";
         }
     }
 }

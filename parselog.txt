@@ -7,25 +7,19 @@
    yacc.py:2371:Token 'DEC' defined, but not used
    yacc.py:2371:Token 'DIVEQUALS' defined, but not used
    yacc.py:2371:Token 'DOT' defined, but not used
-   yacc.py:2371:Token 'EQ' defined, but not used
-   yacc.py:2371:Token 'GT' defined, but not used
-   yacc.py:2371:Token 'GTE' defined, but not used
    yacc.py:2371:Token 'INC' defined, but not used
    yacc.py:2371:Token 'LSHIFT' defined, but not used
-   yacc.py:2371:Token 'LT' defined, but not used
-   yacc.py:2371:Token 'LTE' defined, but not used
    yacc.py:2371:Token 'MINUSEQUALS' defined, but not used
    yacc.py:2371:Token 'MOD' defined, but not used
    yacc.py:2371:Token 'MODEQUALS' defined, but not used
    yacc.py:2371:Token 'MULTEQUALS' defined, but not used
-   yacc.py:2371:Token 'NEQ' defined, but not used
    yacc.py:2371:Token 'NOT' defined, but not used
    yacc.py:2371:Token 'PLUSEQUALS' defined, but not used
    yacc.py:2371:Token 'RSHIFT' defined, but not used
    yacc.py:2371:Token 'URSHIFT' defined, but not used
    yacc.py:2371:Token 'XOR' defined, but not used
-   yacc.py:2390:There are 25 unused tokens
+   yacc.py:2390:There are 19 unused tokens
    yacc.py:2443:20 shift/reduce conflicts
    yacc.py:2447:1 reduce/reduce conflict
-   yacc.py:2466:reduce/reduce conflict in state 86 resolved using rule (lista_sentencias -> sentencia)
-   yacc.py:2467:rejected rule (lista_sentencias -> <empty>) in state 86
+   yacc.py:2466:reduce/reduce conflict in state 99 resolved using rule (lista_sentencias -> sentencia)
+   yacc.py:2467:rejected rule (lista_sentencias -> <empty>) in state 99

@@ -163,7 +163,8 @@ def p_expresion(p):
     '''expresion : expresion_aritmetica
                  | expresion_logica
                  | expresion_identificador
-                 | expresion_literal'''
+                 | expresion_literal
+                 | expresion_comparacion'''
     p[0] = p[1]
 
 def p_expresion_aritmetica(p):
@@ -189,6 +190,15 @@ def p_expresion_literal(p):
                          | BOOLEAN_LITERAL
                          | NULL_LITERAL'''
     p[0] = Literal(p[1])
+
+def p_expresion_comparacion(p):
+    '''expresion_comparacion : expresion LT expresion
+                             | expresion LTE expresion
+                             | expresion GT expresion
+                             | expresion GTE expresion
+                             | expresion EQ expresion
+                             | expresion NEQ expresion'''
+    p[0] = BinaryOperation(p[2], p[1], p[3])
 
 def p_sentencia_declaracion_variable(p):
     '''sentencia : declaracion_variable'''

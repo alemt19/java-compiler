@@ -1,1 +1,1 @@
-from .lexer import analizar, errores, tokens, crear_lexer
+from .lexer import analizar, errores, crear_lexer, obtener_tokens

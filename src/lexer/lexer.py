@@ -6,10 +6,50 @@ from .tokens import tokens
 reserved = keywords
 tokens = list(reserved.values()) + tokens
 
-def t_IDENTIFIER(t):
-    r'[a-zA-Z_$][a-zA-Z0-9_$]*'
-    t.type = reserved.get(t.value, 'IDENTIFIER')  # Revisar si es palabra reservada
+def obtener_tokens():
+    return tokens
+
+def t_PUBLIC(t):
+    r'public'
     return t
+
+def t_PRIVATE(t):
+    r'private'
+    return t
+
+def t_PROTECTED(t):
+    r'protected'
+    return t
+
+def t_STATIC(t):
+    r'static'
+    return t
+
+def t_CLASS(t):
+    r'class'
+    return t
+
+def t_INT_TYPE(t):
+    r'int'
+    return t
+
+def t_FLOAT(t):
+    r'float'
+    return t
+
+def t_BOOLEAN(t):
+    r'boolean'
+    return t
+
+def t_CHAR(t):
+    r'char'
+    return t
+
+def t_STRING(t):
+    r'string'
+    return t
+
+# Reglas para literales
 
 def t_NUMBER(t):
     r'\d+'
@@ -17,28 +57,37 @@ def t_NUMBER(t):
     return t
 
 def t_STRING_LITERAL(t):
-    r'\"([^\\\n]|(\\.))*?\"'
-    t.value = t.value[1:-1]  # Remover comillas
+    r'"([^"\\]|\\.)*"'
+    t.value = t.value[1:-1]
     return t
 
-t_ignore = ' \t'  # Ignorar espacios y tabs
+def t_CHARACTER_LITERAL(t):
+    r'\'(\\.|[^\\\'])?\''
+    t.value = t.value[1:-1]
+    return t
 
-def t_COMMENT(t):
-    r'(//.*)|(/\*(.|\n)*?\*/)'
-    pass  # Ignorar comentarios
+def t_IDENTIFIER(t):
+    r'[a-zA-Z_][a-zA-Z_0-9]*'
+    t.type = keywords.get(t.value, 'IDENTIFIER')
+    return t
+
+t_ignore  = ' \t'
 
 def t_newline(t):
-    r'\r?\n'  # Coincide con \n o \r\n
-    t.lexer.lineno += 1
+    r'\n+'
+    t.lexer.lineno += len(t.value)
+
+def t_comments(t):
+    r'//.*'
+    pass
 
 errors = []
 
 def t_error(t):
     errors.append(f"Carácter ilegal '{t.value[0]}' en la línea {t.lineno}, posición {t.lexpos}")
-    t.lexer.skip(1)  # Salta el carácter ilegal
+    t.lexer.skip(1)
 
 lexer = lex.lex()
-
 
 def analizar(codigoStr):
     lexer.input(codigoStr)

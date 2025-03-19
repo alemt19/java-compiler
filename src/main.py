@@ -7,7 +7,12 @@ from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebChannel import QWebChannel
 
 sys.path.insert(0, path.join(".", "lexer"))
-from lexer import analizar, errores
+sys.path.insert(0, path.join(".", "parser"))
+from lexer import analizar, errores, crear_lexer, obtener_tokens
+from parser import parse_code, get_errores_sint, crear_parser
+
+lexer = crear_lexer()
+parser = crear_parser(obtener_tokens())
 
 class Bridge(QObject):
     def __init__(self, webview):
@@ -21,6 +26,14 @@ class Bridge(QObject):
     @pyqtSlot(result=str)
     def analisisLexicoErroresJS(self):
         return errores()
+
+    @pyqtSlot(str, result=str)
+    def analisisSintacticoJS(self, data):
+        return parse_code(parser, data, lexer)
+    
+    @pyqtSlot(result=str)
+    def analisisSintacticoErroresJS(self):
+        return get_errores_sint(parser)
 
     def enviarAJS(self, data):
         self.webview.page().runJavaScript(f"recibirDesdePython('{data}')")

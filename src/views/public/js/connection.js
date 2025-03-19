@@ -4,14 +4,26 @@ window.onload = function() {
     });
 };
 
-function analisisLexico(input) {
+function ejecutar(input) {
+    fase = document.querySelector('#fase').value;
+    let generarRespuesta = null;
+    let generarErrores = null;
+    if (fase === "Léxico") {
+        generarRespuesta = pyObject.analisisLexicoJS;
+        generarErrores = pyObject.analisisLexicoErroresJS;
+    }
+    else if (fase === "Sintáxis") {
+        generarRespuesta = pyObject.analisisSintacticoJS;
+        generarErrores = pyObject.analisisSintacticoErroresJS;
+    }
+    
     if (input === "textarea") {
         codigo = document.querySelector('#input').value;
-        pyObject.analisisLexicoJS(codigo, (respuesta) => {
-            agregarRespuesta(`Análisis léxico:\n${respuesta}`);
+        generarRespuesta(codigo, (respuesta) => {
+            agregarRespuesta(`${respuesta}`);
 
         });
-        pyObject.analisisLexicoErroresJS((errores) => {
+        generarErrores((errores) => {
             agregarErrores(`${errores}`);
         });
     }
@@ -22,10 +34,10 @@ function analisisLexico(input) {
     
             lector.onload = function(e) {
                 agregarCodigo(e.target.result);
-                pyObject.analisisLexicoJS(e.target.result, (respuesta) => {
+                generarRespuesta(e.target.result, (respuesta) => {
                     agregarRespuesta(`${respuesta}`);
                 });
-                pyObject.analisisLexicoErroresJS((errores) => {
+                generarErrores((errores) => {
                     agregarErrores(`${errores}`);
                 });
             };

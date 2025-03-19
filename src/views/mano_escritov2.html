@@ -32,17 +32,17 @@
                 <div class="caja_Parte_arriba">
                     <div class="caja_seleccionar_modos">
                         <span><strong>¡Y selecciona Modo para Traducir!: </strong></span>
-                        <select>
+                        <select id="fase">
                             <option value="">Elige Modo</option>
-                            <option value="">Léxico</option>
-                            <option value="">Sintaxis</option>
-                            <option value="">Semántico</option>
-                            <option value="">Código Intermedio</option>
-                            <option value="">Optimizacion de Código</option>
-                            <option value="">Generar Código</option>
+                            <option value="Léxico">Léxico</option>
+                            <option value="Sintáxis">Sintaxis</option>
+                            <option value="Semántico">Semántico</option>
+                            <option value="Código Intermedio">Código Intermedio</option>
+                            <option value="Optimizacion de Código">Optimizacion de Código</option>
+                            <option value="Generar Código">Generar Código</option>
                         </select>
                     </div>
-                    <button onclick="analisisLexico('textarea')">¡TRADUCE!</button>
+                    <button onclick="ejecutar('textarea')">¡TRADUCE!</button>
                 </div>
             </div>
             <div class="caja12">

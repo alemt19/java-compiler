@@ -16,6 +16,10 @@ function ejecutar(input) {
         generarRespuesta = pyObject.analisisSintacticoJS;
         generarErrores = pyObject.analisisSintacticoErroresJS;
     }
+    else if (fase === "Generar Código") {
+        generarRespuesta = pyObject.generarCodigoJS;
+        generarErrores = pyObject.analisisSintacticoErroresJS;
+    }
     
     if (input === "textarea") {
         codigo = document.querySelector('#input').value;

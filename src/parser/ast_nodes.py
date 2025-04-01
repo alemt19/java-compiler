@@ -1,14 +1,18 @@
-# Nodos AST
-
 class Program:
     def __init__(self, declarations):
         self.declarations = declarations
 
+    def accept(self, visitor):
+        return visitor.visit_program(self)
+
 class VariableDeclaration:
-    def __init__(self, type, name, expression=""): #agregado expression
+    def __init__(self, type, name, expression=""):
         self.type = type
         self.name = name
-        self.expression = expression #agregado expression
+        self.expression = expression
+
+    def accept(self, visitor):
+        return visitor.visit_variable_declaration(self)
 
 class FunctionDeclaration:
     def __init__(self, modifiers, return_type, name, params, body):
@@ -18,25 +22,40 @@ class FunctionDeclaration:
         self.params = params
         self.body = body
 
+    def accept(self, visitor):
+        return visitor.visit_function_declaration(self)
+
 class ClassDeclaration:
     def __init__(self, name, members, modifier=""):
         self.modifier = modifier
         self.name = name
         self.members = members
 
+    def accept(self, visitor):
+        return visitor.visit_class_declaration(self)
+
 class Parameter:
     def __init__(self, type, name):
         self.type = type
         self.name = name
 
+    def accept(self, visitor):
+        return visitor.visit_parameter(self)
+
 class Block:
     def __init__(self, statements):
         self.statements = statements
+
+    def accept(self, visitor):
+        return visitor.visit_block(self)
 
 class Assignment:
     def __init__(self, left, right):
         self.left = left
         self.right = right
+
+    def accept(self, visitor):
+        return visitor.visit_assignment(self)
 
 class BinaryOperation:
     def __init__(self, operator, left, right):
@@ -44,11 +63,17 @@ class BinaryOperation:
         self.left = left
         self.right = right
 
+    def accept(self, visitor):
+        return visitor.visit_binary_operation(self)
+
 class IfStatement:
     def __init__(self, condition, then_block, else_block=None):
         self.condition = condition
         self.then_block = then_block
         self.else_block = else_block
+
+    def accept(self, visitor):
+        return visitor.visit_if_statement(self)
 
 class ForLoop:
     def __init__(self, init, condition, increment, body):
@@ -57,30 +82,51 @@ class ForLoop:
         self.increment = increment
         self.body = body
 
+    def accept(self, visitor):
+        return visitor.visit_for_loop(self)
+
 class WhileLoop:
     def __init__(self, condition, body):
         self.condition = condition
         self.body = body
 
+    def accept(self, visitor):
+        return visitor.visit_while_loop(self)
+
 class Identifier:
     def __init__(self, value):
         self.value = value
+
+    def accept(self, visitor):
+        return visitor.visit_identifier(self)
 
 class Literal:
     def __init__(self, value):
         self.value = value
 
-class ArrayType: #agregado ArrayType
-  def __init__(self, base_type):
-    self.base_type = base_type
+    def accept(self, visitor):
+        return visitor.visit_literal(self)
+
+class ArrayType:
+    def __init__(self, base_type):
+        self.base_type = base_type
+
+    def accept(self, visitor):
+      return visitor.visit_array_type(self)
 
 class Type:
     def __init__(self, name):
         self.name = name
-        
+
+    def accept(self, visitor):
+        return visitor.visit_type(self)
+
 class VoidType:
     def __init__(self):
         self.name = "void"
+
+    def accept(self, visitor):
+        return visitor.visit_void_type(self)
 
 def get_ast_str(node, prefix="", is_last=True):
     """

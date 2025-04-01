@@ -6,7 +6,7 @@ from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebChannel import QWebChannel
 
 from lexer import analizar, errores, crear_lexer, obtener_tokens
-from parser import parse_code, get_errores_sint, crear_parser
+from parser import parse_code, get_errores_sint, crear_parser, get_ast_str, CodeGeneratorVisitor
 
 lexer = crear_lexer()
 parser = crear_parser(obtener_tokens())
@@ -26,11 +26,26 @@ class Bridge(QObject):
 
     @pyqtSlot(str, result=str)
     def analisisSintacticoJS(self, data):
-        return parse_code(parser, data, lexer)
+        ast = parse_code(parser, data, lexer)
+        return get_ast_str(ast)
     
     @pyqtSlot(result=str)
     def analisisSintacticoErroresJS(self):
         return get_errores_sint(parser)
+
+    @pyqtSlot(str, result=str)
+    def generarCodigoJS(self, data):
+        ast = parse_code(parser, data, lexer)
+        if ast:
+            # Crea el visitor y genera el código Python
+            visitor = CodeGeneratorVisitor()
+            python_code = ast.accept(visitor)
+
+            # Imprime o guarda el código Python generado
+            return python_code
+        else:
+            return "Error al parsear el código Java."
+
 
     def enviarAJS(self, data):
         self.webview.page().runJavaScript(f"recibirDesdePython('{data}')")

@@ -1,24 +1,8 @@
 import ply.yacc as yacc
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from .sym_table import *
 from .rules import *
-import logging
-
-logging.basicConfig(
-    level = logging.DEBUG,
-    filename = "parselog.txt",
-    filemode = "w",
-    format = "%(filename)10s:%(lineno)4d:%(message)s"
-)
-log = logging.getLogger()
-
-
 
 # Manejo de errores
-
 errores_sint = []
 
 def p_error(p):
@@ -40,7 +24,7 @@ def parse_code(parser, code, lexer):
     
 def crear_parser(tokens):
     tokens = tokens
-    return yacc.yacc(debug=True, errorlog=log)
+    return yacc.yacc(debug=True)
 
 def get_errores_sint(parser):
     print(errores_sint)

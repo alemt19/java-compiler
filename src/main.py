@@ -7,6 +7,7 @@ from PyQt6.QtWebChannel import QWebChannel
 
 from lexer import analizar, errores, crear_lexer, obtener_tokens
 from parser import parse_code, get_errores_sint, crear_parser, get_ast_str, CodeGeneratorVisitor
+from semantic.analyzer import analyze_code
 
 lexer = crear_lexer()
 parser = crear_parser(obtener_tokens())
@@ -45,6 +46,12 @@ class Bridge(QObject):
             return python_code
         else:
             return "Error al parsear el código Java."
+
+    @pyqtSlot(str, result=str)
+    def analisisSemanticoJS(self, data):
+        ast = parse_code(parser, data, lexer)
+        result = analyze_code(ast)
+        return result
 
 
     def enviarAJS(self, data):

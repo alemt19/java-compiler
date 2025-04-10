@@ -20,6 +20,9 @@ function ejecutar(input) {
         generarRespuesta = pyObject.generarCodigoJS;
         generarErrores = pyObject.analisisSintacticoErroresJS;
     }
+    else if (fase === "Semantico"){
+        generarRespuesta = pyObject.analisisSemanticoJS;
+    }
     
     if (input === "textarea") {
         codigo = document.querySelector('#input').value;

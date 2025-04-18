@@ -17,8 +17,8 @@ def parse_code(parser, code, lexer):
     ast = parser.parse(code, lexer=lexer)
     print(get_ast_str(ast))
     symbol_table.print_table()
-    if (ast):
-        return get_ast_str(ast)
+    if ast:
+        return ast
     else:
         return "Error en el análisis"
     

@@ -12,15 +12,26 @@
     <div class="caja_main">
 
         <div class="caja_titulo">
-            <h1 class="Titulo">Jafapy</h1>
+            <div class="centrar_contenido">
+                <h1 class="Titulo">Jafapy</h1>
             <figure>
                 <img src="public/image/computador.png" alt="computador">
             </figure>
+            </div>
+            <div class="caja_musica" id="Contenedor_MusicPlayer">
+                <audio id="audioPlayer" controls></audio>
+                <button id="CargarMusicaDefecto" class="btn_musicando"><span style="color: white;">Musica efecto</span></button>
+                <button id="CargarMusicaSeleccionado" class="btn_musicando"><span style="color: white;">Elige tu favorito musica</span></button>
+                <input type="file" id="musicFileInput" accept="audio/*" style="display: none;">
+                <button class="btn_musicando" id="Btn_apagar"><span style="color: white;">Apagar Musica</span></button>
+            </div>
         </div>
 
         <div class="caja_modos">
-            <p>¿Quieres cambiar por Mano Escrito Codigo? <a href="mano_escritov2.html">This way sir!</a> <span
-                    class="emoji">&#129488;</span></p>
+            <span>¿Quieres cambiar por Mano Escrito Codigo? <a href="mano_escritov2.html">This way sir!</a> <span
+                    class="emoji">&#129488;</span>
+                    <span>¿Y quieres escuchar musica? -> Toca esta boton <span class="emoji">&#127925;</span></span><button class="Btn_musica" id="Mostrar_MusicPlayer">¡Música!</button>
+            </span>
         </div>
 
         <div class="caja_grande">
@@ -40,7 +51,7 @@
                             <option value="Generar Código">Generar Código</option>
                         </select>
                     </div>
-                    <button onclick="ejecutar('archivo')">¡TRADUCE!</button>
+                    <button onclick="ejecutar('archivo')" class="btn_traducir">¡TRADUCE!</button>
                 </div>
                 <div>
                     <h2>Código Proporcionado</h2>
@@ -64,5 +75,39 @@
         </footer>
     </div>
 </body>
+<script>
+    const Btn_Mostrar_Musica = document.getElementById('Mostrar_MusicPlayer');
+    const CargarMusicaDefecto = document.getElementById('CargarMusicaDefecto');
+    const CargarMusicaSeleccionado = document.getElementById('CargarMusicaSeleccionado');
+    const musicFileInput = document.getElementById('musicFileInput');
+    const Btn_apagar = document.getElementById('Btn_apagar');
 
+    Btn_Mostrar_Musica.addEventListener('click', () => {
+            Contenedor_MusicPlayer.style.display = 'block';
+    });
+
+    
+    CargarMusicaDefecto.addEventListener('click', () => {
+            audioPlayer.src = './public/Menu.mp3';
+            audioPlayer.play().catch(e => alert("No ha puesto Musica!"));
+    });
+
+    CargarMusicaSeleccionado.addEventListener('click', () => {
+            musicFileInput.click(); 
+            
+            musicFileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const fileURL = URL.createObjectURL(file);
+                audioPlayer.src = fileURL;
+                audioPlayer.play();
+            }
+        });
+    });
+    
+    Btn_apagar.addEventListener('click', () => {
+            Contenedor_MusicPlayer.style.display = 'none';
+            audioPlayer.pause(); // 可选：关闭时暂停音乐
+    });
+</script>
 </html>

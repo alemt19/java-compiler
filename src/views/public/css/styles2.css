@@ -84,7 +84,7 @@ img{
     padding: 10px 0px;
 }
 
-button{
+.btn_traducir{
     width: 150px;
     height: 40px;
     background-color: rgb(59, 161, 228, 0.7);
@@ -92,7 +92,7 @@ button{
     border-radius: 10px;
 }
 
-button:hover{
+.btn_traducir:hover{
     width: 150px;
     height: 40px;
     color: azure;
@@ -102,7 +102,7 @@ button:hover{
     cursor: pointer;
 }
 
-button:active{
+.btn_traducir:active{
     width: 150px;
     height: 40px;
     background-color: rgb(69, 100, 117);
@@ -179,4 +179,58 @@ footer{
 textarea {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
+}
+
+.btn_musica{
+    width: 90px;
+    height: 35px;
+    background-color: rgb(59, 161, 228, 0.7);
+    border: none;
+    border-radius: 30px;
+    margin-left: 20px;
+}
+
+.btn_musica:hover{
+    color: azure;
+    background-color: rgb(72, 145, 184);
+    border: none;
+    cursor: pointer;
+}
+
+.btn_musica:active{
+    background-color: rgb(69, 100, 117);
+    border: none;
+}
+
+audio {
+    width: 300px;
+    height: 40px;
+}
+
+.caja_modos{
+    margin: 10px 0px 10px;
+}
+
+.centrar_contenido{
+    display: flex;
+    align-items: center;
+}
+
+.caja_musica{
+    display: none;
+    text-align: center;
+}
+
+.btn_musicando{
+    width: 180px;
+    height: 30px;
+    background-color: rgba(1, 76, 125, 0.7);
+    border: none;
+    border-radius: 30px;
+    margin-left: 20px;
+}
+
+.btn_musicando:hover{
+    background-color: rgba(16, 26, 33, 0.7);
+    cursor: pointer;
 }
